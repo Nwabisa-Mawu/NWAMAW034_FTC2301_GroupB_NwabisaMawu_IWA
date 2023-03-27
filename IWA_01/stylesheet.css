@@ -1,0 +1,131 @@
+
+
+
+/* note: add this to all css files at the start  */
+* {
+    box-sizing: border-box;
+}
+
+
+
+/* using css variables to create reusable pieces of css */
+
+:root {
+    --color-green: #31c48d;
+    --color-white: #ffffff;
+    --color-dark-grey: #33333d;
+    --color-medium-grey: #424250;
+    --color-light-grey: #9ca3ae;
+}
+
+html {
+    height: 100vh;
+
+}
+
+
+body {
+    margin: 0;
+background: var(--color-medium-grey);
+color: var(--color-white);
+font-family: Roboto, Arial, Helvetica, sans-serif;
+
+/* to set the footer at the bottom and make the counter use the whole viewpoint */
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 100%;
+}
+
+
+/* **************************MOBILE-FIRST-RULE:667px X 375px******************************* */
+
+ /* HEADER */
+ .header {
+    text-align: center;
+}
+
+.header_title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-light-grey);
+
+}
+
+/* CONTROLS */
+
+.controls {
+    background: yellow;  /*just to keep track while building*/
+}
+
+
+
+/* COUNTER */
+
+.counter {
+    background: var(--color-dark-grey);
+}
+
+.counter_value {
+    width: 100%;
+    height: 15rem;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--color-white);
+    background: none;
+    border-width: 0;
+    border-bottom: 0.0625rem solid var(--color-light-grey);
+}
+
+/* div container for the buttons that control counter direction */
+.counter_actions {
+    display: flex;
+}
+
+/* styling and size for +/- buttons */
+.counter_button {
+    background: none;
+    width: 50%;
+    border-width: 0;
+    color: var(--color-light-grey);
+    font-size: 3rem;
+    height: 10rem;
+    border-bottom: 0.0625rem solid var(--color-light-grey);
+
+    /* create an animated effect for pressing the button */
+    /* duration of tranformation */
+    transition: transform 0.1s;
+    /* initial position of button */
+    transform: translateY(0);
+
+}
+ /* create a click effect */
+.counter_button:active {
+    background: var(--color-medium-grey);
+    /* position of button when pressed-duration is 0.1s as set out above*/
+    transform: translateY(-1%);
+}
+
+ /* adds the right border line that seperated +/-s */
+.counter_button_first {
+    border-right: 0.0625rem solid var(--color-light-grey);
+}
+
+
+/* footer styling */
+
+.footer {
+    background: var(--color-dark-grey);
+    color: var(--color-light-grey);
+    padding: 2rem;
+    font-size: 0.8rem;
+    text-align: center;
+
+}
+
+.footer_link {
+    color: var(--color-white);
+    /* remove the underline from the link */
+    text-decoration: none;
+}
