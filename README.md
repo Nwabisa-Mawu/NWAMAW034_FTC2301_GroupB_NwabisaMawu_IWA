@@ -1,1 +1,6 @@
-# NWAMAW034_FTC2301_GroupB_NwabisaMawu_IWA
+Nwabisa Mawu Interactive Web Apps Module projects
+
+This repository contains all the folders for the projects completed in the Interactive Web Apps module
+
+Folders:
+IWA_01
