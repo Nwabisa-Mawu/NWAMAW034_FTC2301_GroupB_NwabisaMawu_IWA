@@ -1,8 +1,12 @@
+// GLOBAL CONSTANTS
+const MAX_NUMBER = 10;
+const MIN_NUMBER = -10;
+
 // store three things in our js storage
 // to select the three html elements we want to use and store
 
 // use const because variable will always refer to element
-  //Do not use css classes
+//Do not use css classes
 //because if it is changed then the response will stop
 //use element id's and (data-key)data attributes=allow you to add custom attributes
 //to HTML
@@ -18,11 +22,42 @@ const add = document.querySelector('[data-key="add"]');
 // to assign an action use ()=>
 
 const subtractHandler = () => {
-        console.log('subtract was clicked');
+        
+        // we want the number on the screen to change by this value
+        const newValue = parseInt(number.value)- 1;
+        number.value = newValue;
+//  to create a min value
+    //if (newValue === MIN_NUMBER){
+      //  subtract.disabled = true;
+    //} 
+     //Will give the same behaviour as below
+
+     if (number.disabled === true){
+        add.disabled = false;
+     }
+     if (newValue <= MIN_NUMBER) {
+        subtract.disabled = true 
+        add.disabled = false;
+     }
 }
 
 const addHandler = () => {
-        console.log('add was clicked')
+        // we want the number on the screen to change by this value
+        const newValue = parseInt(number.value) + 1;
+        number.value = newValue
+// to create a new max value
+    //    if (newValue === MAX_NUMBER){
+      //          add.disabled = true;
+        //}
+        //Did not work because both end up disabled if you reach max/min 
+  
+        if (number.value <= MIN_NUMBER){
+                add.disabled = false;
+        }
+        if (newValue >= MAX_NUMBER) {
+                add.disabled = true;
+                subtract.disabled = false;
+        }
 }
 
 subtract.addEventListener('click', subtractHandler)
