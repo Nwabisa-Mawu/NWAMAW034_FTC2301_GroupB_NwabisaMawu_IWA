@@ -6,6 +6,4 @@ It was built using HTML, CSS and JavaScript
 <<<<<<< HEAD
 type: webapp counter that reset and subtract and add
 
-![screenshot-of-counter](IWA_01\Tally-counter.png)
-=======
->>>>>>> 6f52f8bb23f6e5e1d08f359b420e8ba9001f89a5
+![screenshot-of-counter](/IWA_01/Tally-counter.png)
