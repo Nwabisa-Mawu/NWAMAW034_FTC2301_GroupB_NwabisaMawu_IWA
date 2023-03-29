@@ -1,5 +1,7 @@
 Nwabisa Mawu IWA_03: Script element and modules
 
+Technologies used: HTML JavaScript
+
 Why did the code not work?
 - The code did not work because the file path to configuration.js was not declared oroperly, it was missing .js and 
 the document.querySelector('footer') function was concatenated to the replacement message.
