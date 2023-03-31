@@ -1,5 +1,7 @@
 Nwabisa Mawu IWA_05 Challenge solution
 
+Technologies used: JavaScript HTML
+
 Why did the original code not work?
 - The shipping and currency were placed comparison variables but they were not declared and given a value.
 - NAM and RSA were not strings, which is what the location variable has as the value.
