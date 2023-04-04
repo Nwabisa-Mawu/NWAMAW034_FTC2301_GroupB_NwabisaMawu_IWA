@@ -5,9 +5,13 @@ Technologies used: JavaScript HTML
 <b>Challenge 1:</b>
 
 Why did the original code not work?
-
+- The variables primaryValid and secondaryValid had a comparison that was not valid because the typeof number function contained 'number', a variable that is not declared and so is undefined.
+- The equality operator was not strict ===.
+- The typeof number variable should not equal the secondaryPhone or primaryPhone value because the purpose of primaryValid/secondaryValid is to check whether the phone numbers are strings that contain numbers 
 
 What changes did you need to make to achieve the intended behaviour?
+- I changed the == operator to the strict equality === operator.
+- I used isNaN(primaryValid) === false; to check that the value of primaryValid is a number by saying 'primaryValid is not a number must evaluate to false'. This means when it is a number, it will equal true and false if it is not. I did the same for the secondaryValid variable.
 
 <b>Challenge 2:</b>
 
