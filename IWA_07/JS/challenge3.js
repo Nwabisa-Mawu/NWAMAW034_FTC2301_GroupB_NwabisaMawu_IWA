@@ -35,3 +35,4 @@ ${divider}
 ${divider}`
 
 console.log(result);
+
