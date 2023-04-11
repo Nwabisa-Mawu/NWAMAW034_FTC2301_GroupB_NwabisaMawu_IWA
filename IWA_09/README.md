@@ -15,3 +15,5 @@ What changes did you need to make to achieve the intended behaviour?
 - I changed the equation for startingAfterTax variable to the salary minus the value of the salary * the tax value.
 - I used template literals and concatenation to combine the values of lodging and size with a hyphen between them so that it matches on of the keys found in the rent object.
 - I used dot notation to access the food and transport key values from the expenses object then I used bracket notation to access the 'large-apartment' value in the rent object. The dot notation did not work? Why? 
+
+Note: I did add some JSDoc comments, I'm just trying to train myself into the habit and learn when and how to use them.

@@ -3,7 +3,7 @@ Nwabisa Mawu IWA_08: Object literal syntax
 Technologies used: JavaScript HTML
 
 Why did the original code not work?
-- The sarahBalance variable was declared twice suing the const keyword.
+- The sarahBalance variable was declared twice using the const keyword.
 - The assignment operator, =, was missing from both object declarations.
 - The object keys were assigned values using the assignment operator for all their values for all the objects.
 - There were no commas separating the key-value pairs inside the object curly brackets.
