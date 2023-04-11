@@ -6,15 +6,14 @@ const leoBalance = '-10'
 
 const sarahName = 'Sarah    '
 const sarahSurname = 'Kleinhans'
-const sarahBalance = '-4582.21000111'
+// const sarahBalance = '-4582.21000111'
 const sarahNumber = '13'
 const sarahStreet = 'William Close'
 const sarahPostal = '0310'
-// const sarahBalance = '-5'
+const sarahBalance = '-5'
 
 // Only change below this line
 
-const sarahBalance2 = '-5'
 
 const leo = {
 	name : leoName,
@@ -32,7 +31,7 @@ const sarah = {
 	name : `${sarahName.trimEnd()} ${sarahSurname}`,
 	age : 62,
 	"access id" : "6b279ae5-5657-4240-80e9-23f6b635f7a8",
-	balance : sarahBalance2,
+	balance : sarahBalance,
 	address : {
 		number : sarahNumber,
 		street : sarahStreet,
