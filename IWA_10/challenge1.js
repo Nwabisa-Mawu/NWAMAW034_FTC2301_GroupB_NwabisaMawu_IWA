@@ -77,23 +77,9 @@ if (isEarlier) {
 
 /* if the date is earlier it should tell you what changes were made
  before replacing them to the holidays object*/
-if (copied.id === undefined) {
-    console.log('ID change:', false);
-} else {
-    console.log(`ID change: ${copied.id}`)
-}
-if (copied.name === undefined) {
-    console.log('Name change:', false);
-} else {
-    console.log(`Name change: ${copied.name}`);
-}
-if (copied.date === undefined) {
-    console.log('Date change:', false)
-} else {
-    console.log(`Date change: ${copied.date.getDate()}/${copied.date.getMonth() + 1}/${copied.date.getFullYear()}`);
-}
-
-
+console.log('ID change:', copied.id === undefined ?  false : copied.id);
+console.log('Name change:', copied.name === undefined ? false : copied.name);
+console.log('Date change:', copied.date === undefined ? false : `${(copied.date.getDate()).toString().padStart(2,0)}/${(copied.date.getMonth() + 1).toString().padStart(2,0)}/${currentYear}`)
 
 
 const firstHolidayTimestamp = Math.min(
@@ -128,8 +114,9 @@ const lastDay = new Date(lastHolidayTimestamp).getDate();
 const lastMonth = new Date(lastHolidayTimestamp).getMonth() + 1;
 
 
-console.log(`${firstDay}/${firstMonth}/${currentYear}`);
-console.log(`${lastDay}/${lastMonth}/${currentYear}`)
+console.log(`${firstDay.toString().padStart(2,0)}/${firstMonth.toString().padStart(2,0)}/${currentYear}`);
+console.log(`${lastDay.toString().padStart(2,0)}/${lastMonth.toString().padStart(2,0)}/${currentYear}`)
 
-const randomHoliday = Math.floor(Math.random());
-console.log(randomHoliday)
+const randomHoliday = holidays[Math.floor(Math.random()*9)];
+const randomDate = `${(new Date(randomHoliday.date).getDate()).toString().padStart(2,0)}/${(new Date(randomHoliday.date).getMonth()+1).toString().padStart(2,0)}/${currentYear}`
+console.log(randomDate);
