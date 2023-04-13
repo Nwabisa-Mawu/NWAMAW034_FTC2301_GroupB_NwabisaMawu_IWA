@@ -67,7 +67,7 @@ let xMas = { name: 'X-mas Day',
 
 // Checking whether the new date is earlier than the current date
 const isEarlier = xMas.date < holidays[6].date
-console.log('New date is earlier:', isEarlier)
+console.log('New date is earlier?', isEarlier)
 
 /*if the new date is earlier then move it from change to copied object
 which is temporary holder*/
