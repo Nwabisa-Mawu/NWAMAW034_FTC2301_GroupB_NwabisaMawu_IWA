@@ -4,11 +4,15 @@ let calculated = '1'
 
 // Only allowed to change below
 
+
 const logCalc = () => {
-    const isString = typeof 'numerical-string';
+    const isString = typeof(calculated);
     const calculatedAsNumber = isString ? calculated : parseInt(calculated)
-    return calculated = parseInt(calculatedAsNumber) + 2
+    return calculated = parseInt(calculatedAsNumber) + 2;
 }
+
+
+
 const logCalcValue = logCalc()
 
 const calcUser = () => {
@@ -18,7 +22,7 @@ const calcUser = () => {
     } else {
         let state = 'idle'
     }
-  return user || state;
+  return state;
 }
 
 const checkUser = () => {
@@ -35,11 +39,11 @@ calcUser()
 checkUser()
 calcUser()
 
-// checkUser()
-// calcUser()
+checkUser()
+calcUser()
 
-// checkUser()
-// calcUser()
+checkUser()
+calcUser()
 
-// checkUser()
-// calcUser()
+checkUser()
+calcUser()
