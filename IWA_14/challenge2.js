@@ -8,7 +8,7 @@ const multiply = (a, b) => {
 
     /*Have to use the function keyword to be able to use this
     * keyword to refer to the object the function is in*/
-let internal = function () {
+const internal = function () {
     const added = add(this.internal.a, this.internal.b)
     const multiplied = multiply(added, this.internal.c)  
 	 console.log(multiplied);
