@@ -1,4 +1,4 @@
-Nwabisa Mawu IWA_12: Style object
+Nwabisa Mawu IWA_13: Intro to functions
 
 Technologies used: JavaScript HTML
 

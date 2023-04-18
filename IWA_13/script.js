@@ -11,12 +11,10 @@ const logCalc = () => {
     return calculated = parseInt(calculatedAsNumber) + 2;
 }
 
-
-
 const logCalcValue = logCalc()
 
 const calcUser = () => {
-    if (logCalcValue > 2) {
+         if (logCalcValue > 2) {
          user = 'John' 
          state = 'requesting'
     } else {
@@ -26,9 +24,9 @@ const calcUser = () => {
 }
 
 const checkUser = () => {
-    if (state === 'requesting') {
+  if (state === 'requesting') {
         console.log(`User: ${user} (${calculated})`)
-    }
+    } 
 }
 
 // Only allowed to change code above
@@ -37,13 +35,13 @@ checkUser()
 calcUser()
 
 checkUser()
-calcUser()
+// calcUser()
 
-checkUser()
-calcUser()
+// checkUser()
+// calcUser()
 
-checkUser()
-calcUser()
+// checkUser()
+// calcUser()
 
-checkUser()
-calcUser()
+// checkUser()
+// calcUser()
