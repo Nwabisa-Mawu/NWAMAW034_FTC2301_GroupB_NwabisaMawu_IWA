@@ -16,4 +16,4 @@ What changes did you need to make to achieve the intended behaviour?
 - I changed the reassigned calculated variable by replacing the strict comparison operator with an assignment operator then wrapped the calculatedAsNumber variable in a parseInt function to change it to a number that can be added to 2.
 - I removed the "numerical-string" string and replaced it with the calculated variable inside the typeof method because it will evaluate whether the value of calculate is a string then that can be true/false for the calculatedAsNumber variable.
 - I removed the user and && from the if statement condition because we only want to check if the state is 'requesting', not the value of the user variable.
-- The value of the logCalc function was not showing up in the scope of the next funxtion so I created a new variable and assigned it the value of the logCalc function and used that in the calcUser function.
+- The value of the logCalc function was not showing up in the scope of the next function so I created a new variable and assigned it the value of the logCalc function and used that in the calcUser function.

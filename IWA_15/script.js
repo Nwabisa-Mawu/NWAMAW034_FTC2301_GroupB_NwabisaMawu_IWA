@@ -15,11 +15,14 @@ const third = data.lists[2][1];
 const result = [];
 
 const extractBiggest = () => { 
-    let biggest = 0; /*the placeholder variable
+    /*the placeholder variable
     for the biggest number in the evaluations */
-    let listsNumber = -1; /*setting the index number
+    let biggest = 0; 
+
+    /*setting the index number
     so that it can specify which data.lists array to
     pop a value from */
+    let listsNumber = -1; 
 
 	if (first.length > 0 && first[first.length-1] > biggest) {
 		biggest = first[first.length -1];
