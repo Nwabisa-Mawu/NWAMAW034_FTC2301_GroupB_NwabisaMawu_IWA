@@ -15,3 +15,4 @@ What changes did you need to make to achieve the intended behaviour?
 - I replaced the commas at the end of declarations with semi-colons.
 - I declared two variables, updateOrder and orderStatus, they will let the JS script select the elements that I want to change, by index.
 - I used the innerHTML property on the updateOrder and orderStatus variables, with different indexes according to my target element,  to replace their current values to the values of the data attributes.
+- I put all the order information inside an object named 'orders', which is made up of 3 objects, each named after the order number and inside the object is the querySelector method used ot fetch the data key values then the get.Attribute method is attached to replace the values in the HTML page with the data key values.
