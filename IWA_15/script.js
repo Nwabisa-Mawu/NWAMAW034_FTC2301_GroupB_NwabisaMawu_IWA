@@ -24,15 +24,15 @@ const extractBiggest = () => {
     pop a value from */
     let listsNumber = -1; 
 
-	if (first.length > 0 && first[first.length-1] > biggest) {
+	if ((first.length > 0) && (first[first.length-1] > biggest)) {
 		biggest = first[first.length -1];
         listsNumber = 0;
 	} 
-    if (second.length > 0 && second[second.length-1] > biggest) {
+    if ((second.length > 0) && (second[second.length-1] > biggest)) {
         biggest = second[second.length-1];
         listsNumber = 1;
     }
-    if (third.length > 0 && third[third.length-1] > biggest) {
+    if ((third.length > 0) && (third[third.length-1] > biggest)) {
         biggest = third[third.length-1];
         listsNumber = 2;
     } 
