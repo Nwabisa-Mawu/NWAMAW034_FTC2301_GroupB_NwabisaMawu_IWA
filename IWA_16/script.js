@@ -125,7 +125,7 @@ const createHtml = (sectionKey, athleteId, name, surname, racesArray) => {
   newDl.appendChild(newDd2)
 
   /**function that takes the dates from the races array and returns the
-   * most recent date
+   * most recent date and the index of number of the object with that date.
    * @param {*Array} racesArray from the createHTML parameters
    */
   const getLastRace = (racesArray) => {
