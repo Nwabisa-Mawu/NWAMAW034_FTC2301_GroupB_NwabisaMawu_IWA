@@ -65,62 +65,69 @@ const addCell = () => {
 
 const createHtml = (data) => {
 
-/* create for loop to use the addCell function 5 times
-to make 5 rows - started index from one for readability*/
-for (let i = 1; i < 6; i++) {
-    document.body.appendChild(addCell())
-}
-
-//for loop to add the week text to the first cell of each row
-const rows = document.body.querySelectorAll('tr');
-const currentDay = new Date()
-const daysInMonth = getDaysInMonth(currentDay)
-
-for (let i = 1; i < 6; i++) {
-//fetch all the first cells of each row
-
-  const weekCells = rows[i].querySelectorAll('td')
-   weekCells[0].classList.add('table__cell_sidebar')
-   weekCells[0].innerHTML = data[i - 1];
-
-   for (let x = 1; x < 8; x++) {
-    let day = x+1
-    weekCells[x].innerHTML = day
-
-    //used to add the light color to the weekends
-    if ((x === 1 || x === 7) ) {
-        weekCells[x].classList.add('table__cell_weekend')
+    const tbody = document.createElement('tbody');
+  
+    /* create for loop to use the addCell function 5 times
+    to make 5 rows - started index from one for readability*/
+    for (let i = 1; i < 6; i++) {
+      tbody.appendChild(addCell())
     }
-    
-    /* to populate the day cells with the month days */
-    if(i === 2 && day < daysInMonth) {
-        day +=7
+  
+    //for loop to add the week text to the first cell of each row
+    const rows = tbody.querySelectorAll('tr');
+    const currentDay = new Date('29 april 2023')
+    const daysInMonth = getDaysInMonth(currentDay)
+  
+    for (let i = 1; i < 6; i++) {
+      //fetch all the first cells of each row
+      const weekCells = rows[i-1].querySelectorAll('td');
+      weekCells[0].classList.add('table__cell_sidebar')
+      weekCells[0].innerHTML = data[i - 1];
+  
+      for (let x = 1; x < 8; x++) {
+        let day = x+1
         weekCells[x].innerHTML = day
-        weekCells[x].classList.add('table__cell_alternate')
-    } else if (i === 3 && day < daysInMonth) {
-        day +=14
-        weekCells[x].innerHTML = day
-    } else if (i === 4 && day < daysInMonth) {
-        day +=21
-        weekCells[x].innerHTML = day
-        weekCells[x].classList.add('table__cell_alternate')
-    } else if (i === 5 && day < daysInMonth) {
-        day +=28
-        weekCells[x].innerHTML = day
-        if (day === daysInMonth) break;
+  
+        //used to add the light color to the weekends
+        if (x === 1 || x === 7) {
+            weekCells[x].classList.add('table__cell_weekend')
+        }
+        /* to populate the day cells with the month days */
+        if(i === 2 && day < daysInMonth) {
+            day +=7
+            weekCells[x].innerHTML = day
+            weekCells[x].classList.add('table__cell_alternate')
+        } else if (i === 3 && day < daysInMonth) {
+            day +=14
+            weekCells[x].innerHTML = day
+        } else if (i === 4 && day < daysInMonth) {
+            day +=21
+            weekCells[x].innerHTML = day
+            weekCells[x].classList.add('table__cell_alternate')
+        } else if (i === 5 && day < daysInMonth) {
+            day +=28
+            weekCells[x].innerHTML = day
+            if (day === daysInMonth) break;
+        }
+        //used to mark the current day
+        if (day === currentDay.getDate()) {
+            weekCells[x].classList.remove('table__cell_weekend');
+          weekCells[x].classList.add('table__cell_today')
+        }
+      }
     }
-   //used to mark the current day
-   if (day === currentDay.getDate()) {
-    weekCells[x].classList.add('table__cell_today')
-}
-   }
-}
-};
+  
+    // add the tbody to the table
+    const table = document.createElement('table');
+    table.appendChild(tbody);
+  
+    return table.outerHTML;
+  };
 
 
 // Only edit above
 
-const current = new Date()
+const current = new Date('29 april 2023')
 document.querySelector('[data-title]').innerText = `${MONTHS[current.getMonth()]} ${current.getFullYear()}`
 
 const data = createData()
