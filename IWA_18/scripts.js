@@ -1,3 +1,11 @@
+//Object with data to fetch the html elements to be used
+import { html, updateDraggingHtml, createOrderHtml, moveToColumn } from './view.js';
+//
+import { updateDragging, createOrderData } from './data.js';
+
+
+
+
 /**
  * A handler that fires when a user drags over any element inside a column. In
  * order to determine which column the user is dragging over the entire event
@@ -28,14 +36,148 @@ const handleDragOver = (event) => {
 }
 
 
-const handleDragStart = (event) => {}
-const handleDragEnd = (event) => {}
-const handleHelpToggle = (event) => {}
-const handleAddToggle = (event) => {}
-const handleAddSubmit = (event) => {}
-const handleEditToggle = (event) => {}
-const handleEditSubmit = (event) => {}
-const handleDelete = (event) => {}
+const handleDragStart = (event) => { }
+const handleDragEnd = (event) => { }
+
+/**
+ * This function will show an overlay with the instructions on how to use 
+ * the app when the ? is clicked then will close when close is clicked.
+ * @param {Event} event 
+ */
+const handleHelpToggle = (event) => {
+    event.preventDefault();
+    html.help.overlay.showModal();
+
+    html.help.cancel.addEventListener("click", () => {
+        html.help.overlay.close()
+        /*will make the page focus on the add order button after the
+        information overlay is closed*/
+        html.other.add.focus()
+    });
+}
+
+
+/**
+ * A handler that makes the page focus on the add order button upon loading 
+ * so it can be accessed using the spacebar/enter/click.
+ * When clicked, the overlay page showing the menu to add items 
+ * will pop up.
+ * Also removes the add order page when cancel is clicked.
+ * @param {Event} event 
+ */
+const handleAddToggle = (event) => {
+    /* to bring the add items to menu overlay page */
+    html.add.overlay.showModal();
+    /* the cancel button will remove the overlay add to menu page */
+    html.add.cancel.addEventListener("click", () => {
+        event.preventDefault();
+        html.add.overlay.close()
+        /*will make the page focus on the add order button after the
+        information overlay is closed*/
+        html.other.add.focus()
+    });
+}
+
+/**
+ * When the "Add" button in the add Order overlay is clicked, then this 
+ * will handle the addition of the new order to the "Ordered" column. 
+ * @param {Event} event 
+ */
+const handleAddSubmit = (event) => {
+    event.preventDefault();
+
+    /* created the props object required for the createOrderData function */
+    const props = {
+        title: html.add.form.title.value,
+        table: html.add.form.table.value,
+        column: html.edit.column.value
+    };
+    const orderData = createOrderData(props);
+    //create a new object 
+    const order = orderData;
+    const orderHtml = createOrderHtml(order);
+
+    //to move the order to the "ordered" column
+    const orderedColumn = html.columns.ordered;
+    orderedColumn.appendChild(orderHtml);
+    //makes the form empty after submission
+    html.add.form.reset();
+
+    // will close the overlay before adding the orders to html
+    html.add.overlay.close();
+    html.other.add.focus();
+}
+
+/**
+ * This handler will make the edit overlay appear when an order is clicked
+ * on in its respective column.
+ * It will also delete the entry when delete link is clicked and
+ * allow for changing of the order details.
+ * @param {Event} event 
+ */
+const handleEditToggle = (event) => {
+    event.preventDefault();
+
+    /* to show the edit order page overlay */
+    html.edit.overlay.showModal()
+
+    /* to remove the overlay when cancel is clicked without
+    changing the contents of the order */
+    html.edit.cancel.addEventListener("click", () => {
+        html.edit.overlay.close()
+        html.other.add.focus();
+    })
+
+    /* to delete the entry if the delete link is clicked*/
+    html.edit.delete.addEventListener("click", () => {
+        const orderInfo = event.target.closest('[data-id');
+        html.columns.ordered.removeChild(orderInfo);
+        html.edit.overlay.close();
+        html.other.add.focus();
+    })
+
+}
+
+const handleEditSubmit = (event) => {
+
+    //create a new object to store the changed information 
+    const props = {
+        title: html.edit.form.title.value,
+        table: html.edit.form.table.value,
+        column: html.edit.form.column.value
+    };
+
+    //create new order data with the edited information
+    const orderData = createOrderData(props);
+    const orderId = orderData.id;
+    const order = orderData;
+    //create new html data to be added
+    const orderHtml = createOrderHtml(order);
+
+    //fetch the order being edited
+    const editedOrder = document.querySelector(`[data-id = "${orderId}"]`);
+    //replace the order information manually as it is added
+    editedOrder.querySelector('[data-order-title]').textContent = order.title;
+    editedOrder.querySelector('[data-order-table]').textContent = order.table;
+    editedOrder.querySelector('[data-order-column]').textContent = order.column;
+
+    const orderedColumn = html.columns.ordered
+    orderedColumn.replaceWith(orderHtml)
+
+    //close the overlay and refocus on the add order button
+    // html.edit.overlay.close();
+    // html.other.add.focus();
+}
+console.log()
+
+const handleDelete = (event) => { } // put it in the edit handler
+
+//To focus the add order button when the page loads
+const addOrderBtn = html.other.add
+window.addEventListener("load", () => {
+    addOrderBtn.focus()
+});
+
 
 html.add.cancel.addEventListener('click', handleAddToggle)
 html.other.add.addEventListener('click', handleAddToggle)
