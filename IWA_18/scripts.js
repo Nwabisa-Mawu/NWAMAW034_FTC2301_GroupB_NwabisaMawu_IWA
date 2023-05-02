@@ -78,6 +78,8 @@ const handleAddToggle = (event) => {
     });
 }
 
+//create a global variable to store the id value
+
 /**
  * When the "Add" button in the add Order overlay is clicked, then this 
  * will handle the addition of the new order to the "Ordered" column. 
@@ -92,11 +94,11 @@ const handleAddSubmit = (event) => {
         table: html.add.form.table.value,
         column: html.edit.column.value
     };
+
     const orderData = createOrderData(props);
     //create a new object 
     const order = orderData;
     const orderHtml = createOrderHtml(order);
-
     //to move the order to the "ordered" column
     const orderedColumn = html.columns.ordered;
     orderedColumn.appendChild(orderHtml);
@@ -106,7 +108,13 @@ const handleAddSubmit = (event) => {
     // will close the overlay before adding the orders to html
     html.add.overlay.close();
     html.other.add.focus();
+
 }
+
+/* to only open the edit order overlay when you click on an order in the 
+ordered column - cannot edit when preparing and served */
+const orderedGroup = html.other.grid.querySelector('[data-column = "ordered"]')
+
 
 /**
  * This handler will make the edit overlay appear when an order is clicked
@@ -117,58 +125,79 @@ const handleAddSubmit = (event) => {
  */
 const handleEditToggle = (event) => {
     event.preventDefault();
+    const orderInfo = event.target.closest('[data-id]');
+    //if the div is not found, return empty
+    if (!orderInfo) return;
+  
+    const orderId = orderInfo.dataset.id;
+    const orderEdit = orderedGroup.querySelector(`[data-id="${orderId}"]`);
+    if (!orderEdit) return;
+  /* to show the edit order page overlay when you click on a specific order*/
+    orderEdit.addEventListener("click", () => {
+      html.edit.overlay.showModal();
+    });
 
-    /* to show the edit order page overlay */
-    html.edit.overlay.showModal()
-
-    /* to remove the overlay when cancel is clicked without
-    changing the contents of the order */
+  /* to remove the overlay when cancel is clicked without
+      changing the contents of the order */
     html.edit.cancel.addEventListener("click", () => {
-        html.edit.overlay.close()
-        html.other.add.focus();
-    })
+      html.edit.overlay.close();
+      html.other.add.focus();
+    });
 
-    /* to delete the entry if the delete link is clicked*/
+     /* to delete the entry if the delete link is clicked*/
     html.edit.delete.addEventListener("click", () => {
-        const orderInfo = event.target.closest('[data-id');
-        html.columns.ordered.removeChild(orderInfo);
-        html.edit.overlay.close();
-        html.other.add.focus();
-    })
+      html.columns.ordered.removeChild(orderInfo);
+      html.edit.overlay.close();
+      html.other.add.focus();
+    });
 
 }
+
+
 
 const handleEditSubmit = (event) => {
+    event.preventDefault();
 
-    //create a new object to store the changed information 
-    const props = {
-        title: html.edit.form.title.value,
-        table: html.edit.form.table.value,
-        column: html.edit.form.column.value
-    };
+    // // fetch the ordered column
+    // const selectedOrderId = document.querySelector('[data-column = "ordered"]')
+    // //fetch the data-id value from the ordered column
+    // const orderId = selectedOrderId.querySelectorAll('[data-id]')
+    // let orderIdNumber = 0;
+    // //create a for loop to save all the order ids in an array
+    // const orderIdArray = [];
+    // for (let i = 0; i < orderId.length; i++) {
+    //     orderIdNumber = orderId[i].dataset.id
+    //     orderIdArray.push(orderIdNumber)
 
-    //create new order data with the edited information
-    const orderData = createOrderData(props);
-    const orderId = orderData.id;
-    const order = orderData;
-    //create new html data to be added
-    const orderHtml = createOrderHtml(order);
+    //     if (orderIdNumber === orderId[i].getAttribute('data-id')) {
+    //         //create a new object to store the changed information 
+    //         const props = {
+    //             title: html.edit.form.title.value,
+    //             table: html.edit.form.table.value,
+    //             column: html.edit.form.column.value
+    //         };
+    //         //create new order data with the edited information
+    //         const orderData = createOrderData(props);
+    //         // fetch the order being edited
+    //         const editedOrder = document.querySelector(`[data-id = "${orderIdNumber}"]`);
+    //         // //replace the order information manually as it is added
+    //         editedOrder.querySelector('[data-order-title]').textContent = orderData.title;
+    //         editedOrder.querySelector('[data-order-table]').textContent = orderData.table;
+    //         //     //will sort out with drag functions
+    //         //     // editedOrder.querySelector('[data-order-column]').textContent = orderData.column;
 
-    //fetch the order being edited
-    const editedOrder = document.querySelector(`[data-id = "${orderId}"]`);
-    //replace the order information manually as it is added
-    editedOrder.querySelector('[data-order-title]').textContent = order.title;
-    editedOrder.querySelector('[data-order-table]').textContent = order.table;
-    editedOrder.querySelector('[data-order-column]').textContent = order.column;
-
-    const orderedColumn = html.columns.ordered
-    orderedColumn.replaceWith(orderHtml)
-
+    //     }
+      
+    // }
+//reset the form before closing
+html.edit.form.reset();
     //close the overlay and refocus on the add order button
-    // html.edit.overlay.close();
-    // html.other.add.focus();
+    html.edit.overlay.close();
+    html.other.add.focus();
+
+    return console.log(html.edit.overlay)
 }
-console.log()
+
 
 const handleDelete = (event) => { } // put it in the edit handler
 
@@ -179,11 +208,12 @@ window.addEventListener("load", () => {
 });
 
 
+
 html.add.cancel.addEventListener('click', handleAddToggle)
 html.other.add.addEventListener('click', handleAddToggle)
 html.add.form.addEventListener('submit', handleAddSubmit)
 
-html.other.grid.addEventListener('click', handleEditToggle)
+orderedGroup.addEventListener('click', handleEditToggle)
 html.edit.cancel.addEventListener('click', handleEditToggle)
 html.edit.form.addEventListener('submit', handleEditSubmit)
 html.edit.delete.addEventListener('click', handleDelete)
