@@ -19,9 +19,14 @@ import { updateDragging, createOrderData } from './data.js';
  */
 const handleDragOver = (event) => {
     event.preventDefault();
+    
+    /*to determine which column the order is being dragged over,
+     the event path is checked*/
     const path = event.path || event.composedPath()
+    /*created column variable and set it to null so that the value can equal the
+    value of the data-area attribute of that column*/
     let column = null
-
+ 
     for (const element of path) {
         const { area } = element.dataset
         if (area) {
@@ -33,11 +38,32 @@ const handleDragOver = (event) => {
     if (!column) return
     updateDragging({ over: column })
     updateDraggingHtml({ over: column })
+
+    return column
+}
+
+/**
+ * 
+ * @param {*} event 
+ */
+const handleDragStart = (event) => {
+    
+    // //fetch the name of the coumn being dragged over
+    // const columnName = document.querySelector('[data-area]').getAttribute('data-area')
+
+    // if (columnName === 'preparing') {
+    //     return
+    //     updateDragging({ source: column })
+    //     updateDraggingHtml({ source: column })
+    // }
+
 }
 
 
-const handleDragStart = (event) => { }
-const handleDragEnd = (event) => { }
+const handleDragEnd = (event) => {
+   event.preventDefault();
+    
+ }
 
 /**
  * This function will show an overlay with the instructions on how to use 
@@ -201,13 +227,11 @@ const handleEditSubmit = (event) => {
 
 
 const handleDelete = (event) => { } // put it in the edit handler
-
 //To focus the add order button when the page loads
 const addOrderBtn = html.other.add
 window.addEventListener("load", () => {
     addOrderBtn.focus()
 });
-
 
 
 html.add.cancel.addEventListener('click', handleAddToggle)
@@ -222,11 +246,14 @@ html.edit.delete.addEventListener('click', handleDelete)
 html.help.cancel.addEventListener('click', handleHelpToggle)
 html.other.help.addEventListener('click', handleHelpToggle)
 
+/*This loop iterates over an array of the three columns in the html page*/
 for (const htmlColumn of Object.values(html.columns)) {
     htmlColumn.addEventListener('dragstart', handleDragStart)
     htmlColumn.addEventListener('dragend', handleDragEnd)
 }
 
+/* This loop iterates over the same columns but with their name in the 
+data-area attribute name to identify its heading. */
 for (const htmlArea of Object.values(html.area)) {
     htmlArea.addEventListener('dragover', handleDragOver)
 }
