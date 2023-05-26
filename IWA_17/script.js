@@ -21,7 +21,7 @@ const getDaysInMonth = (date) => new Date(date.getFullYear(), date.getMonth() + 
 /**
  * Function that creates an empty array of the given length parameter
  * to be filled later.
- * @param number length 
+ * @param {Number} length 
  * @returns Array named result
  */
 const createArray = (length) => {

@@ -1,4 +1,6 @@
 
+
+
 const MONTHS = [
   'Jan',
   'Feb',
@@ -13,6 +15,14 @@ const MONTHS = [
   'Nov',
   'Dec',
 ]
+
+/**
+ * @typedef {object} data
+ * @prop {string} id
+ * @prop {string} firstName
+ * @prop {string} surname
+ * @prop {Array<Object>} races
+ */
 
 const data = {
   response: {
@@ -80,12 +90,12 @@ races: races2} = data.response.data.SV782
 
 /**This is a function to add the <h2> and <dl> elements and fill
  * them with the athlete's information.
- * @param sectionKey {*String} - The data-athlete key found in the section element
+ * @param sectionKey {String} - The data-athlete key found in the section element
  * @example '[data-athlete = "NM387"]'
- * @param athleteId {*String} - special athlete id number
- * @param name {*String} - first name of athlete
- * @param surname {*String} - last name of athlete
- * @param racesArray {*Array} - array containing objects with race
+ * @param athleteId {String} - special athlete id number
+ * @param name {String} - first name of athlete
+ * @param surname {String} - last name of athlete
+ * @param racesArray {Array} - array containing objects with race
  * dates and times in nested arrays.
  */
 const createHtml = (sectionKey, athleteId, name, surname, racesArray) => {
@@ -100,7 +110,6 @@ const createHtml = (sectionKey, athleteId, name, surname, racesArray) => {
   const newDt3 = document.createElement("dt")
   const newDd3 = document.createElement("dd")
 
-  /* Insert the text for the h2 heading */
   const sectionInfo = document.querySelector(sectionKey)
 
   sectionInfo.appendChild(newH2)
@@ -117,7 +126,7 @@ const createHtml = (sectionKey, athleteId, name, surname, racesArray) => {
   newDl.appendChild(newDt1)
   newDt1.innerHTML = "Total number of races:"
   newDl.appendChild(newDd1)
-  newDd1.innerHTML = racesArray.length
+  newDd1.innerHTML = `${racesArray.length}`
 
   // date of last race
   newDl.appendChild(newDt2)
@@ -126,7 +135,7 @@ const createHtml = (sectionKey, athleteId, name, surname, racesArray) => {
 
   /**function that takes the dates from the races array and returns the
    * most recent date and the index of number of the object with that date.
-   * @param {*Array} racesArray from the createHTML parameters
+   * @param {Array} racesArray from the createHTML parameters
    */
   const getLastRace = (racesArray) => {
 
