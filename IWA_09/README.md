@@ -1,8 +1,8 @@
 #  Nwabisa Mawu IWA_09: Using objects
 
 ## Technologies used: 
--JavaScript 
--HTML
+- JavaScript 
+- HTML
 
 ## Why did the original code not work?
 - The value of the tax percentage was accessed from the object using dot notation.
