@@ -1,3 +1,4 @@
+// @ts-check
 
 
 
@@ -88,15 +89,15 @@ const {firstName: athlete2Name,
 races: races2} = data.response.data.SV782
 
 
-/**This is a function to add the <h2> and <dl> elements and fill
- * them with the athlete's information.
- * @param sectionKey {String} - The data-athlete key found in the section element
- * @example '[data-athlete = "NM387"]'
- * @param athleteId {String} - special athlete id number
- * @param name {String} - first name of athlete
- * @param surname {String} - last name of athlete
- * @param racesArray {Array} - array containing objects with race
- * dates and times in nested arrays.
+/**
+ * This function creates the html section that will have
+ * the athletes information
+ *
+ * @param {string} sectionKey 
+ * @param {string} athleteId 
+ * @param {string} name 
+ * @param {string} surname 
+ * @param {Array} racesArray 
  */
 const createHtml = (sectionKey, athleteId, name, surname, racesArray) => {
   const newH2 = document.createElement("h2")
@@ -110,6 +111,13 @@ const createHtml = (sectionKey, athleteId, name, surname, racesArray) => {
   const newDt3 = document.createElement("dt")
   const newDd3 = document.createElement("dd")
 
+  /**
+   * @typedef {object} Section
+   */
+
+  /**
+   * @type {Section}
+   */
   const sectionInfo = document.querySelector(sectionKey)
 
   sectionInfo.appendChild(newH2)
