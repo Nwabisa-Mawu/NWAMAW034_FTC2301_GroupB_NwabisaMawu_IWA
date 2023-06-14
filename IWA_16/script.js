@@ -1,7 +1,5 @@
 // @ts-check
 
-
-
 const MONTHS = [
   'Jan',
   'Feb',
